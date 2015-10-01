@@ -1,0 +1,30 @@
+//style to StarWarsGame - easter egg
+
+button
+{
+    color: lightblue;
+    background-color:antiquewhite;
+}
+.reverse {
+    color:mediumturquoise;
+    font-family: Courier New, Courier, monospace;
+}
+.freely {
+    color: lavenderblush;
+    font-family: Courier New, Courier, monospace;
+    font-size:medium;
+}
+body {
+    font-family: Courier New, Courier, monospace;
+    color:blueviolet;
+    font-size: medium;
+}
+.fate {
+    font-family: Courier New, Courier, monospace;
+    font-size: medium;
+    border-radius: 5px 10px 5px 10px;
+    background-color:lightsteelblue;
+    color:black;
+    box-shadow:inset;
+    
+}
