@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Conditional_Radio_Button_Challenge
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (pencilButton.Checked)
+            {
+                resultLabel.Text = "Pencils are great!";
+                imageButton.ImageUrl = "Pencil.png";
+            }
+            else if (penButton.Checked)
+            {
+                resultLabel.Text = "Pens are foreva.";
+                imageButton.ImageUrl = "Pen.ico";
+            }
+            else if (phoneButton.Checked)
+            {
+                resultLabel.Text = "Distractionnns?";
+            }
+            else if (laptopButton.Checked)
+            {
+                resultLabel.Text = "Print it out";
+            }
+            else
+            {
+                resultLabel.Text = "Please select an option";
+            }
+        }
+    }
+}
