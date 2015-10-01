@@ -1,0 +1,55 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Bootstrap.Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class ="Container">
+    
+   
+        <div class="page-header">
+            <h1>Page Header</h1>
+            <p class="lead">By line (lead)</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                lorem
+            </div>
+            <div class="col-md-6">
+                aenean vulp.
+            </div>
+
+        </div>
+    <div class="form-group">
+        <label>TextBox: </label>
+        <asp:TextBox ID="testTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+    </div>
+
+    <div class="form-group">
+        <label>DropDownList:</label>
+        <asp:DropDownList ID="testDropDownList" runat="server" CssClass="form-control">
+            <asp:ListItem Text="Option 1" Value="Small" />
+            <asp:ListItem Text="Option 2" Value="Medium" />
+            <asp:ListItem Text="Option 3" Value="Large" />
+        </asp:DropDownList>
+    </div>
+    <div class="checkbox"><label><asp:CheckBox ID="TestCheckBox" runat="server">
+        </asp:CheckBox>CheckBox
+                          </label></div>
+    <div class="radio"><label><asp:RadioButton ID="testRadioButton" runat="server"
+        GroupName="TestGroup"></asp:RadioButton>RadioButton
+                       </label></div>
+            
+    <asp:Button ID="testButton" runat="server" Text="Test" CssClass="btn btn-lg btn-primary" />
+    </div>
+    </form>
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>
