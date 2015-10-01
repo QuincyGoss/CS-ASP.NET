@@ -1,0 +1,173 @@
+//Course.cs 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ChallengeStudentCourses
+{
+    class Course
+    {
+        public class Courses
+        {
+            private Student _alexa;
+            private Student _jeremy;
+            private Student _jonas;
+            
+            public var Course (string Student1Name, string Student2Name, string Student3Name) {
+                _alexa = new Student();
+                _alexa.Name = Student1Name;
+                _jeremy = new Student();
+                _jeremy.Name = Student2Name;
+                _jonas = new Student();
+                _jonas.Name = Student3Name;
+            }
+        }
+    }
+}
+
+//Enrollment.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Default
+{
+    public class Enrollment
+    {
+        public Course Course { get; set; }
+        public Student Student { get; set; }
+        public int Grade { get; set; }
+    }
+}
+
+//student.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Default
+{
+    public class Student
+    {
+        public int StudentId { get; set; }
+        public string Name { get; set; }
+        public List<Course> Courses { get; set; }
+        public List<Enrollment> Enrollments { get; set; }
+    }
+}
+
+//Default.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Default
+{
+    public partial class Default1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void assignment1Button_Click(object sender, EventArgs e)
+        {
+            /* Create a list of courses ( 3 ex courses with details)
+             * each course should have at least 2 students enrolled in them
+             * use object and collection initializers. then iterate through each 
+             * course and print out the course's details and the students that are
+             * enrolled in each chourse foreach, iterate through course and foreach
+             * iterate through student. <br/>
+             */
+
+            List<Course> courses = new List<Course>() {
+                new Course() { CourseId = 101, Name = "English", Students=new List<Student>(){
+                    new Student() {StudentId = 1, Name = "Alexa"},
+                    new Student() {StudentId = 2, Name = "Jeremy"}}},
+                new Course() { CourseId = 202, Name = "History", Students = new List<Student>() {
+                    new Student() {StudentId = 3, Name ="Jonas"},
+                    new Student() {StudentId = 4, Name ="Quincy"}}},
+                new Course() { CourseId = 303, Name = "Biology", Students=new List<Student>() {
+                    new Student() {StudentId = 5, Name ="Jebbadiah"}, 
+                    new Student() {StudentId = 6, Name = "Ira"}}}
+                
+            };
+            foreach (var course in courses)
+            {
+                resultLabel.Text += String.Format("<br/>Course: {0} - {1}", course.CourseId, course.Name);
+                foreach (var student in course.Students)
+                {
+                    resultLabel.Text += String.Format("<br/>&nbsp;&nbsp;Student: {0} - {1}", student.StudentId, student.Name);
+                }
+            }
+        }
+
+
+        protected void assignment2Button_Click(object sender, EventArgs e)
+        {
+            /* Create a dictionary of students ( 3 example students...make up details)
+             * use the studentId as the key. Each student must be enrolled in 2 courses.
+             * Use object and collection initializers. Then iterate through each student
+             * and print out to the web page each student's info and the courses the
+             * student is enrolled in. Student CS(course) and Course CS(list of studnets)
+             * */
+            Course course1 = new Course() { CourseId = 101, Name = "English" };
+            Course course2 = new Course() { CourseId = 202, Name = "History" };
+            Course course3 = new Course() { CourseId = 303, Name = "Biology" };
+
+            Dictionary<int, Student> students = new Dictionary<int, Student>() {
+                { 1, new Student {StudentId = 1, Name = "Alexa",Courses = new List<Course> { course1, course2 }}},
+                { 2, new Student {StudentId = 2, Name = "Jeremy", Courses = new List<Course>{ course1, course3}}},
+                { 3, new Student {StudentId = 3, Name = "Jonas", Courses = new List<Course> { course2, course3 }}}
+
+        };
+            foreach (var student in students) {
+                resultLabel.Text += String.Format("<br/>Student: {0} - {1}", student.Value.StudentId, student.Value.Name);
+                foreach (var course in student.Value.Courses) {
+                    resultLabel.Text += String.Format("<br/>&nbsp;&nbsp;Course: {0} - {1}", course.CourseId, course.Name);
+
+    }
+	
+		 
+}
+            
+         
+}
+
+        protected void assignment3Button_Click(object sender, EventArgs e)
+        {
+            /* We need to keep track of each student's grade (0 to 100) in a particular
+             * course. This means at minimum you'll need to add another class, and 
+             * depending on your implementation, you will probably need to modify
+             * the existing classes to accommodate this new requirement. Give each 
+             * student a grade in each course they are enrolled in then for each student
+             * print out each course they are enrolled in and their grade */
+            //add a new class called enrollment...
+            //will need to add a list of enrollment to student.cs
+            //if real app, remove courses from student.cs
+            Student student = new Student();
+            student.StudentId = 5;
+            student.Name = "Jebbadiah";
+            student.Enrollments = new List<Enrollment>() {
+                new Enrollment { Grade = 96, Course = new Course { CourseId = 1, Name = "English"}},
+                new Enrollment { Grade = 85, Course = new Course { CourseId = 2, Name = "History"}},
+                new Enrollment { Grade = 99, Course = new Course { CourseId = 3, Name = "Biology"}}
+            };
+            resultLabel.Text += String.Format("<br/>Student: {0} - {1}", student.StudentId, student.Name);
+            foreach (var enrollment in student.Enrollments)
+            {
+                resultLabel.Text += String.Format("<br/>&nbsp;&nbsp;Enrolled In: {0} - Grade: {1}", enrollment.Course.Name, enrollment.Grade);
+            }
+        }
+    }
+}
