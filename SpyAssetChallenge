@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace SpyAssetChallenge
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                double[] acts = new double[0];
+                ViewState.Add("Acts", acts);
+
+                int[] rigged = new int[0];
+                ViewState.Add("Rigged", rigged);
+
+                string[] asset = new string[0];
+                ViewState.Add("Asset", asset);
+            }
+        }
+
+        protected void addButton_Click(object sender, EventArgs e)
+        {
+            double[] acts = (double[])ViewState["Acts"];
+            int[] rigged = (int[])ViewState["Rigged"];
+            string[] asset = (string[])ViewState["Asset"];
+
+            int newLength = asset.Length + 1;
+
+            Array.Resize(ref acts, newLength);
+            Array.Resize(ref rigged, newLength);
+            Array.Resize(ref asset, newLength);
+
+            int newIndex = asset.GetUpperBound(0);
+
+            asset[newIndex] = assetText.Text;
+            acts[newIndex] = double.Parse(actsText.Text);
+            rigged[newIndex] = int.Parse(riggedText.Text);
+
+            ViewState["Acts"] = acts;
+            ViewState["Rigged"] = rigged;
+            ViewState["Asset"] = asset;
+
+
+            resultLabel.Text = String.Format("Total elections rigged:{0}" +
+                "<br /> Average acts:{1 :N2} <br />Last asset you added:{2}", 
+                rigged.Sum(), acts.Average(), asset[newIndex]);
+
+            assetText.Text = "";
+            actsText.Text = "";
+            riggedText.Text = "";
+            
+        }
+    }
+}
