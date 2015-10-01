@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace EpicSpyChallenge
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                Calendar1.SelectedDate = DateTime.Now.Date;
+                Calendar2.SelectedDate = DateTime.Now.Date.AddDays(14);
+                Calendar3.SelectedDate = DateTime.Now.Date.AddDays(21);
+
+            }
+            
+        }
+
+        protected void spyButton_Click(object sender, EventArgs e)
+        {
+            
+            //Spies cost $500 a day
+        
+            string day = Calendar3.SelectedDate.Subtract(Calendar2.SelectedDate)
+                .TotalDays.ToString();
+            int salary = int.Parse(day);
+            int totalNumber = salary * 500;
+            if (salary >= 14)
+            {
+                totalNumber = salary + 1000;
+            } 
+            String result = String.Format("The assignment of {0} to assignment {1} has" +
+                "been authorized. Budget total: {2: C}",
+                TextBox1.Text, TextBox2.Text, totalNumber.ToString());
+
+
+            TimeSpan between = Calendar2.SelectedDate.Subtract(Calendar1.SelectedDate);
+            if (between.TotalDays < 14)
+            {
+                resultLabel.Text = "Error. Must allow 14 days of rest.";
+                DateTime earliest = Calendar1.SelectedDate.AddDays(14);
+                Calendar2.SelectedDate = earliest;
+                Calendar2.VisibleDate = earliest;
+            }
+            resultLabel.Text = result;
+        }
+    }
+}
