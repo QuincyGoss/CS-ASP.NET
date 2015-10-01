@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LINQ
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var people = new List<Person> 
+            {
+                new Person(FirstName = "Quincy", LastName = "Goss", Age = 23),
+                new Person(FirstName = "Jannie", LastName = "Janes", Age = 30),
+                new Person(FirstName = "Jayjay", LastName = "Anderrson", Age = 19)
+
+            };
+            var result = from p in people
+                         where p.Age < 20
+                         select p;
+
+            foreach (var item in result) 
+            {
+                Console.WriteLine("{0} - {1}", item.FirstName, item.LastName);
+            }
+            /* var sample = "I am Quincy";
+
+            var result = from c in sample.ToLower()
+                         where c == 'a' || c == 'e' || c == 'i' || c=='o' || c=='u'
+                         group c by c; //looks strange with this example
+                         //in this case, c needs ; so can't select as well
+                         orderby c descending //default ascending 
+                         select c; //loop through all values and assign c variable
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item); //when you have a grouping, you have a .key
+                //dictionary. append .key to item
+                //or...("{0} -{1}", item.key, item.count()}; 
+            }
+             */
+        }
+
+  }
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Age { get; set; }
+    }
+   
+}
